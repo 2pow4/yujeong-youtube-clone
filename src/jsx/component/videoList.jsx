@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoItem from './videoItem1.jsx';
+import VideoItem from './videoItem.jsx';
 
 const VideoList = (props) => {
 

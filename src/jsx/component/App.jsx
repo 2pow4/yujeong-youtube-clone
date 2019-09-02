@@ -4,9 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search'
 
-import SearchBar from './searchBar2.jsx';
+import searchContainer from '../container/searchContainer.js';
+
 import VideoDetail from './videoDetail.jsx';
-import VideoList from './videoList1.jsx';
+import VideoList from './videoList.jsx';
 
 const API_KEY = 'AIzaSyCxKFVp-gfaoRR7ipJRiMKpn6vLMUEFM3o';
 
@@ -23,7 +24,7 @@ class App extends React.Component {
     }
 
     videoSearch(term){
-        YTSearch({key: API_KEY, term: term}, videos => {
+        YTSearch({key: API_KEY, term: term, maxResult: 10}, videos => {
             this.setState({
                 videos: videos,
                 selectedVideo: videos[0]
@@ -37,8 +38,8 @@ class App extends React.Component {
         }, 300);
 
         return(
-            <div>
-                <h3>Youtube Search: </h3> <SearchBar onSearchTermChange={videoSearch}/>       
+            <div className="body">
+                <h3>Youtube Search: </h3> <searchContainer onSearchTermChange={videoSearch}/>       
                 <VideoDetail video = {this.state.selectedVideo}/>        
                 <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={this.state.videos}/>
             </div>
